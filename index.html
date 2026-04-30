@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ĐẤU TRƯỜNG TRÍ TUỆ - MAI THỊ THÚY</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Màn hình Đăng nhập -->
+        <div id="login-screen" class="screen">
+            <div class="login-card">
+                <h1 class="login-title">ĐẤU TRƯỜNG TRÍ TUỆ</h1>
+                <div class="login-form">
+                    <input type="text" id="student-name" placeholder="NHẬP HỌ VÀ TÊN HỌC SINH...">
+                    <input type="text" id="student-class" placeholder="NHẬP LỚP CỦA EM (VD: 4/1)...">
+                    <button onclick="startApp()" class="btn-start-action">BẮT ĐẦU</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Màn hình Chính -->
+        <div id="home-screen" class="screen hidden">
+            <div class="top-bar-home">
+                <button class="btn-re-login-big" onclick="logout()">← ĐĂNG NHẬP LẠI</button>
+                <button class="btn-gold-board-big" onclick="showGoldBoard()">🏆 BẢNG VÀNG</button>
+            </div>
+            <h2 class="sub-select-title">CHỌN MÔN HỌC ĐỂ ÔN TẬP</h2>
+            <div class="subject-row">
+                <button onclick="showExamList('Lịch sử và Địa lí')" class="btn-sub-item blue">🌎 LỊCH SỬ & ĐỊA LÍ</button>
+                <button onclick="showExamList('Khoa học')" class="btn-sub-item green">🧪 KHOA HỌC</button>
+                <button onclick="showExamList('Công nghệ')" class="btn-sub-item orange">⚙️ CÔNG NGHỆ</button>
+            </div>
+        </div>
+
+        <!-- Màn hình Bảng Vàng -->
+        <div id="gold-board-screen" class="screen hidden">
+            <h1 class="login-title">🏆 BẢNG VÀNG THÀNH TÍCH</h1>
+            <div class="board-container">
+                <table id="gold-board-table">
+                    <thead>
+                        <tr>
+                            <th>Ngày giờ</th>
+                            <th>Học sinh</th>
+                            <th>Lớp</th>
+                            <th>Môn</th>
+                            <th>Điểm</th>
+                            <th>Thời gian</th>
+                        </tr>
+                    </thead>
+                    <tbody id="gold-board-body"></tbody>
+                </table>
+            </div>
+            <button onclick="showHomeScreen()" class="btn-back-home">Đóng bảng vàng</button>
+        </div>
+
+        <!-- Danh sách Đề -->
+        <div id="exam-list-screen" class="screen hidden">
+            <h2 id="selected-subject-display" class="sub-select-title"></h2>
+            <div id="exam-buttons" class="exam-grid"></div>
+            <button onclick="showHomeScreen()" class="btn-back-home">Quay lại chọn môn</button>
+        </div>
+
+        <!-- Giao diện Làm bài -->
+        <div id="quiz-screen" class="screen hidden">
+            <div class="quiz-header">
+                <button class="btn-return" onclick="backToMenu()">↩ QUAY LẠI</button>
+                <div class="exam-status">
+                    <span id="header-subject-name">...</span>
+                    <span id="timer">⏱ 00:00</span>
+                </div>
+            </div>
+            <div class="quiz-body">
+                <div class="quiz-left">
+                    <div id="question-nav" class="nav-container"></div>
+                    <button id="submit-btn" class="btn-submit-quiz-big" onclick="submitQuiz()">NỘP BÀI</button>
+                    <div id="result-box" class="result-summary hidden">
+                        <h3>KẾT QUẢ</h3>
+                        <div id="final-score"></div>
+                        <div id="final-rank"></div>
+                    </div>
+                    <div class="info-card-big">
+                        <div class="info-line">👤 HS: <span id="info-name">...</span></div>
+                        <div class="info-line">🏠 Lớp: <span id="info-class">...</span></div>
+                        <div class="teacher-info-big">
+                            Giáo viên: MAI THỊ THÚY<br>
+                            Trường Tiểu học Tân Đồng
+                        </div>
+                    </div>
+                </div>
+                <div class="quiz-right">
+                    <div id="question-area"></div>
+                    <div class="nav-actions">
+                        <button id="prev-btn" onclick="prevQuestion()" class="btn-step-prev">◀ CÂU TRƯỚC</button>
+                        <button id="next-btn" onclick="nextQuestion()" class="btn-step-next">CÂU TIẾP ▶</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="questions_lsdlCKII.js"></script>
+    <script src="questions_khCKII.js"></script>
+    <script src="questions_cnCKII.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
